@@ -6,13 +6,6 @@ d1 = hexPixels / 2
 d2 = d1 / Math.sqrt(3.0)
 mod = 2
 
-canvTop = null    # canvas top and left position (for getting coordinates).
-canvLeft = null
-
-# hash with key a string representation of the x,y coords 
-# and value the prime number at those coords.
-point_primes = {}
-
 # The Canvas and Graphics context.
 canv = document.getElementById 'canv'
 ctx = canv.getContext "2d"
@@ -52,9 +45,6 @@ buildTriangle = (max) ->
     n += 1
   results
 
-triangle = buildTriangle(10)
-
-
 draw_hexagons = (triangle, func) ->
   startX = canvWidth / 2
   startY = 0
@@ -80,16 +70,16 @@ draw_hexagon = (x,y,fillColor,strokeColor) ->
   ctx.stroke() 
 
 colorMod2 = (x) ->
-  if x%2 is 0 then '#f00' else '#0f0'
+  if x is 0 then '#f00' else '#0f0'
 
 colorMod3 = (x) ->
-  if x%3 is 0 then '#f00' else if x%3 is 1 then'#0f0' else '#00f'
+  if x is 0 then '#f00' else if x is 1 then'#0f0' else '#00f'
 
 colorMod4 = (x) ->
-  if x%4 is 0 then '#f00' else if x%4 is 1 then'#0f0' else if x%4 is 2 then '#990' else '#909'
+  if x is 0 then '#f00' else if x is 1 then'#0f0' else if x is 2 then '#990' else '#909'
 
 colorMod5 = (x) ->
-  if x%5 is 0 then '#f00' else if x%4 is 1 then'#0f0' else if x%4 is 2 then '#990' else if x is 3 then '#909' else '#099'
+  if x is 0 then '#f00' else if x is 1 then'#0f0' else if x is 2 then '#990' else if x is 3 then '#909' else '#099'
 
 colorFunc = colorMod2
 
