@@ -16,7 +16,7 @@
 			margin-top: 20px;
 		}
 		#sidebar {
-			width: 200px;
+			width: 300px;
 			float: left;
 			background-color: #fff;
 			padding: 20px;
@@ -31,18 +31,28 @@
 </head>
 <body>
 	<div id="sidebar">
+		<h3>The Sierpinsky Gasket in Pascal's Triangle</h3>
+		<ul>
+			<li>Entries in Pascal's Triangle are colored by their remainder (modulus) different bases.</li>
+			<li>You can set values for the last row, the base for the modulo operation and the width of the canvas in pixels.</li>
+			<li>Hovering over an entry in the table causes its value to be displayed below.</li>
+		</ul>
 		<div class="fieldgroup">
-			<label># of Rows</label><br>
-			<input type="range" name="rows" id="rows" min="32" max="256" value="32">
+			<label>Last Row</label><br>
+			<input type="range" name="rows" id="rows" min="1" max="256" value="32"><label id="lrows">32</label>
 		</div>
 		<div class="fieldgroup">
-			<label>Modulo</label><br>
-			<input type="range" name="mod" id="mod" min="2" max="5" value="2">
+			<label>Base for Modulo</label><br>
+			<input type="range" name="modBase" id="modBase" min="2" max="13" value="2"><label id="lmodBase">2</label>
 		</div>
 		<div class="fieldgroup">
-			<label>Screen Size</label><br>
-			<input type="range" name="size" id="size" min="600" max="1200" value="600">
+			<label>Screen Width</label><br>
+			<input type="range" name="canvWidth" id="canvWidth" min="300" max="2400" value="600"><label id="lcanvWidth">600</label>
 		</div>
+		<div id="val">
+		</div>		
+		<div id="debug">
+		</div>		
 	</div>
 	<div id="main">
 		<canvas id="canv" title=""></canvas>
