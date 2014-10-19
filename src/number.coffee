@@ -5,7 +5,7 @@ hexPixels = null   # width of a hexagon
 d1 = null          # half-width of a hexagon
 d2 = null          # fourth-height of a hexagon
 modBase = null     # base for modBase calculation
-modColors = ['#fff','#00f','#0f0','#f00','#099','#909','#990','#39b','#3b9','#93b','#9b3','#b39','#b93']
+modColors = ['#fff','#00f','#0f0','#f00','#099','#909','#eb2','#0a1','#e7e','#7ee','#fe1','#f1a','#b93']
 tri = null
 
 # The Canvas and Graphics context.
@@ -130,6 +130,12 @@ draw_hexagon = (x,y,fillColor) ->
   ctx.lineWidth = 1
   ctx.stroke() 
 
+add_swatches = () ->
+  i = 0
+  for color in modColors
+    $("#swatches").append('<div class="swatch"' + ' style="background-color: ' + color + '">' + i + '</div>')
+    i+=1
+
 # handle slider change events
 $("#rows" ).change () ->
   rowCount = parseInt($(this).val())
@@ -156,6 +162,7 @@ refresh = () ->
   draw_hexagons(tri)
 
 window.onload = () ->
+  add_swatches()
   rowCount = parseInt($("#rows").val())
   modBase = parseInt($("#modBase").val())
   canvWidth = parseInt($("#canvWidth").val())
