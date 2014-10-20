@@ -7,6 +7,7 @@ d2 = null          # fourth-height of a hexagon
 modBase = null     # base for modBase calculation
 modColors = ['#fff','#00f','#0f0','#f00','#099','#909','#eb2','#0a1','#e7e','#7ee','#fe1','#f1a','#b93']
 tri = null
+modAreas = []
 
 # The Canvas and Graphics context.
 canv = document.getElementById 'canv'
@@ -104,6 +105,13 @@ buildTriangle = (max) ->
     n += 1
   results
 
+calcAreas = () ->
+  flattened = tri.reduce (a, b) ->
+    a.concat(b);
+  modAreas = (0 for num in [0...modBase])
+  modAreas[r] += 1 for r in flattened
+
+
 # draw all the hexagons for the triaingle
 draw_hexagons = (triangle) ->
   startX = canvWidth / 2
@@ -129,6 +137,14 @@ draw_hexagon = (x,y,fillColor) ->
   ctx.fill() 
   ctx.lineWidth = 1
   ctx.stroke() 
+
+displayAreas = () ->
+  $("#areas").remove()
+  $("#histogram").append('<ul id="areas"></ul>')
+  i = 0
+  for area in modAreas
+    $("#areas").append('<li>' + i + ": " + area + '</li>')
+    i+=1
 
 add_swatches = () ->
   i = 0
@@ -160,6 +176,8 @@ refresh = () ->
   clear()
   tri = buildTriangle(rowCount)
   draw_hexagons(tri)
+  calcAreas()
+  displayAreas()
 
 window.onload = () ->
   add_swatches()
