@@ -142,8 +142,9 @@ displayAreas = () ->
   $("#areas").remove()
   $("#histogram").append('<ul id="areas"></ul>')
   i = 0
+  totArea = modAreas.reduce (a, b) -> a+b
   for area in modAreas
-    $("#areas").append('<li>' + i + ": " + area + '</li>')
+    $("#areas").append('<li>' + i + ": " + area + ' = ' + Math.round(area*100/totArea) + '%</li>')
     i+=1
 
 add_swatches = () ->
